@@ -1,26 +1,25 @@
 import React from 'react'
-import {View, StyleSheet, ImageBackground, Image} from 'react-native'
+import {View, StyleSheet, ImageBackground, Image, Dimensions, ScrollView} from 'react-native'
 
 const image = {uri: 'https://reactjs.org/logo-og.png'}
 
 const Background = (props) => {
   return (
-    <View style={styles.backgroundStyle}>
-        {/* <ImageBackground source={require("./assets/background.jpg")} style={styles.image}/> */}
-        <View style={{position: 'absolute'}}>
+    <ScrollView contentContainerStyle={styles.backgroundStyle}>
             {props.children}
-        </View>
-    </View>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-    image: {
-        height: "100%"
-    },
     backgroundStyle: {
-      backgroundColor: '#F0F8FE',
-      height:'100%'
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#F1F9FF',
+      padding: 10,
+      // height:Dimensions.get('window').height,
+      // width: Dimensions.get('window').width,
     }
 
 })

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, Text, StyleSheet, Platform, Dimensions, TouchableOpacity, Image} from "react-native"
+import {View, Text, StyleSheet, Platform, Dimensions, TouchableOpacity, Image, ScrollView} from "react-native"
 // import Icon from 'react-native-vector-icons/FontAwesome';
 import Background from './Background'
 import Button from './Button';
@@ -21,34 +21,43 @@ const ScanNPay = (props) => {
     }
 
   return (
-    <View style={{...styles.container, height: windHeight}}>
-        <View style={{display:'flex', width:'100%', height:250, justifyContent:'space-between', alignItems:'center'}}>
-            <TouchableOpacity onPress={scanHandler}>
-                <Image source={require("./assets/qr.png")} style={{height:150, width:150, alignSelf:'center'}}  />
-                <Text style={{textAlign:'center', fontSize: 16}}>Click to scan QR</Text>
-            </TouchableOpacity>
-            <Text style={{fontWeight: 'bold', fontSize:16, marginVertical:10}}>OR</Text>
-            <View style={styles.field}>
-                <Field  placeholder="Search by CID" keyboardType={"email-address"} onChangeText={(text) => setCid(text)} value={cid} />
-            </View>
-        </View>
-        <View>
-            <Text style={styles.paymentAdviceNum}>Payment Advice Number</Text>
-            {paymentAdviceNum && <Text style={styles.paymentAdviceNum}>676634xxxx78</Text>}
-        </View>
-        <Button textColor="white" bgColor={"blue"} btnLabel="Get Payment Advice" onPress={paymentHandler} />
-    </View>
+    <Background>
+        <ScrollView contentContainerStyle={{flex: 1, justifyContent: 'space-around'}}>
+            {/* <View style={{...styles.container}}> */}
+                <View style={{flex: 1, alignItems: 'center', marginTop: 20}}>
+                    <TouchableOpacity onPress={scanHandler}>
+                        <Image source={require("./assets/Group_22.png")} style={{alignSelf:'center',  height:Dimensions.get('window').width*0.4, width: Dimensions.get('window').width*0.4, justifyContent:'space-between', alignItems:'center'}}  />
+                    </TouchableOpacity>
+                    <View style={styles.orContainer}>
+                        <Text style={{fontWeight: 'bold', fontSize:16, marginVertical:10}}>OR</Text>
+                    </View>
+                    <View style={{...styles.field, position: 'relative'}}>
+                        {/* <Text style={{position: 'absolute', color:'#333', bottom:15, left:10}}>Search by CID</Text> */}
+                        <Field placeholder="Search by CID" keyboardType={"email-address"} onChangeText={(text) => setCid(text)} value={cid} />
+                    </View>
+                </View>
+                <View style={styles.panConatainer}>
+                    <Text style={styles.paymentAdviceNum}>PAYMENT ADVICE NUMBER</Text>
+                    <Text style={styles.paymentAdv}>676634xxxx78</Text>
+                </View>
+                <Button textColor="white" bgColor={'#1AA3E8'} btnLabel="Get Payment Advice" onPress={paymentHandler} />
+            {/* </View> */}
+        </ScrollView>
+    </Background>
   )
 }
 
 const styles = StyleSheet.create({
     paymentAdviceNum: {
-        color: "blue",
-        fontSize: 20,
-        fontWeight: "bold",
-        letterSpacing: 2,
-        textAlign:'center',
-        marginTop: 10
+        marginTop:10,
+        color: "#1AA3E8",
+        fontSize: 16,
+        textAlign: 'center'
+    },
+    paymentAdv: {
+        textAlign: 'center',
+        color: '#1C1B1B',
+        fontSize: 18
     },
     container: {
         // borderRadius: 30,
@@ -64,6 +73,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginHorizontal:'auto',
         
+    },
+    panConatainer : {
+        borderRadius: 10,
+        backgroundColor: "#fff",
+        // paddingHorizontal: Dimensions.get('window').width*0.2,
+        paddingVertical: 20,
+        marginHorizontal: Dimensions.get('window').width*0.04,
+        marginVertical: Dimensions.get('window').height*0.04
+    },
+    orContainer: {
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        marginVertical: 20,
+        backgroundColor: '#fff',
+        borderRadius: 50,
+        borderColor: "#D4D4D4",
+        borderWidth: 1,
+
     }
     
    

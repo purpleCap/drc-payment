@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, Text, StyleSheet, Platform, Dimensions, TouchableOpacity} from "react-native"
+import {View, Text, StyleSheet, Platform, Dimensions, Image, ScrollView} from "react-native"
 import Background from './Background'
 import Button from './Button';
 import Field from './Field';
@@ -17,26 +17,33 @@ const Login = (props) => {
     }
   return (
     <Background>
-        <View style={{...styles.textContainer, width: windWidth}}>
-            <Text style={styles.text}>Login</Text>
-        </View>
-        <View style={{...styles.loginContainer, width: windWidth}}>
-            <Text style={styles.titleLogin}>DRC Payment</Text>
-            <Text style={styles.textLogin}>Login to your account</Text>
-            <Field placeholder="Email / Username" keyboardType={"email-address"} onChangeText={(text) => setCid(text)} value={cid} />
-            <Field placeholder="password" secureTextEntry={true} onChangeText={(text) => setPassword(text)} value={password} />
-            <View style={styles.forgotContainer}>
-                <Text style={styles.forgotPassText}>Forgot Password ?</Text>
+        {/* <ScrollView style={{flex: 1}}> */}
+            <Image style={styles.loginImage} source={require("./assets/567.png")} />
+            <View style={styles.titleContainer}>
+                <Text style={styles.titleStyle}>DRC Payment</Text>
+                <Text style={{fontSize: 15, fontWeight: '500', color:"#131313"}}>Please login to your account</Text>
             </View>
-
-            <Button textColor="white" bgColor={"blue"} btnLabel="Login" onPress={loginHandler} />
-            <View style={styles.signupContainer}>
-                <Text styles={{fontSize: 16, fontWeight: 'bold'}}>Don't have an account ?</Text>
-                <TouchableOpacity onPress={() => props.navigation.navigate('Signup')}>
-                    <Text style={styles.signupStyleText}>Signup</Text>
-                </TouchableOpacity>
+            <View style={styles.fieldContainer}>
+                <View style={{position: 'relative'}}>
+                    <Field placeholder="Email/ UserName" />
+                    <Image source={require("./assets/Group_12.png")} style={styles.iconImage} />
+                </View>
+                <View style={{position: 'relative'}}>
+                    <Field placeholder="Password"/>
+                    <Image source={require("./assets/Group_13.png")} style={styles.iconImage} />
+                </View>
+                <View style={styles.btnContainer}>
+                    <Button bgColor={'#1AA3E8'} btnLabel="Submit" textColor="#fff" onPress={() => props.navigation.navigate("ScanNPay")} />
+                    <View style={{display: 'flex', justifyContent: 'center', alignItems: 'center',paddingVertical: 18}}>
+                        <Text style={{textDecorationStyle:"solid", textDecorationLine:'underline', color: '#292929'}}>Forgot Password?</Text>
+                        <View style={{display: 'flex', flexDirection: 'row'}}>
+                            <Text style={{color: '#292929'}}>Don't have an account?{" "}</Text>
+                            <Text style={{color: '#1C96E8', fontWeight: '500'}} onPress={ () => props.navigation.navigate("Signup")}>Register</Text>
+                        </View>
+                    </View>
+                </View>
             </View>
-        </View>
+        {/* </ScrollView> */}
     </Background>
   )
 }
@@ -46,57 +53,47 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 54,
         fontWeight: "bold",
-        marginVertical: 20
+        marginVertical: 20,
     },
-    textContainer: {
-        alignItems: "center",
-        width: 460
+    titleStyle: {
+        color:"#1C96E8",
+        fontWeight:'600',
+        fontSize: 35,
+        textAlign:'center',
+        marginTop: '-2%'
     },
-    loginContainer: {
-        backgroundColor: 'white',
-        height: 700,
-        width: "100%",
-        borderTopLeftRadius: 100,
-        borderTopRightRadius: 100,
-        paddingTop: 100,
-        alignItems: 'center',
-        opacity: 0.9
-    },
-    textLogin: {
-        color: "grey",
-        fontSize: 19,
-        fontWeight: "bold",
-        marginBottom:20
-    },
-    titleLogin: {
-        fontSize: 30, color: "blue", fontWeight: "bold"
-    },
-    forgotContainer: {
-        alignItems: 'flex-end',
-        width: '78%',
-        paddingRight: 16,
-        marginBottom:100
-    },
-    forgotPassText: {
-        color: "blue",
-        fontWeight: 'bold',
-        fontSize: 12,
-        letterSpacing: 1.2
-    },
-    signupContainer: {
+    titleContainer: {
+        paddingHorizontal: 10,
+        paddingVertical: 15,
         display: 'flex',
-        flexDirection: 'row',
         justifyContent: 'center',
-        marginTop: 2,
-        alignItems: 'center'
+        alignItems: 'center',
+
     },
-    signupStyleText: {
-        color: 'blue',
-        fontWeight: 'bold',
-        letterSpacing: 1.2,
-        marginLeft: 2,
-        fontSize: 16
+    loginImage: {
+        marginTop: Dimensions.get('window').height*0.1,
+        width:Dimensions.get('window').width*0.8,
+        height: Dimensions.get('window').width*0.8,
+    },
+    fieldContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: 16,
+    },
+
+    iconImage: {
+        height: 47,
+        width: 47,
+        position:'absolute',
+        right: 0,
+        top: 6,
+        borderTopRightRadius:4,
+        borderBottomRightRadius:4,
+    },
+    btnContainer: {
+        paddingBottom: 30
     }
+    
 })
 
 export default Login

@@ -9,6 +9,7 @@ import PaymentAdvice from './src/PaymentAdvice';
 import PaymentDetail from './src/PaymentDetail';
 import BankSelection from './src/BankSelection';
 import PaymentResult from './src/PaymentResult';
+import OTP from './src/OTP';
 
 
 const Stack = createNativeStackNavigator();
@@ -20,17 +21,18 @@ function App() {
       screenOptions={{
         headerShown: false,
         headerMode: 'screen',
-        headerTintColor: 'blue',
-        headerStyle: { backgroundColor: 'white' }
+        headerTintColor: '#fff',
+        headerStyle: { backgroundColor: '#1AA3E8' }
       }}
       >
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="OTP" component={OTP} />
         <Stack.Screen name="ScanNPay" component={ScanNPay} options={{title: 'Scan & Pay', headerShown: true}} />
         <Stack.Screen name="PaymentAdvice" component={PaymentAdvice} options={{title: 'Your Payment Advices', headerShown: true}} />
         <Stack.Screen name="PaymentDetail" component={PaymentDetail} options={{title: 'Your Payment Detail', headerShown: true}} />
         <Stack.Screen name="BankSelection" component={BankSelection} options={{title: 'Select Bank', headerShown: true}} />
-        <Stack.Screen name="PaymentResult" component={PaymentResult} options={{title: 'Payment', headerShown: false}} />
+        <Stack.Screen name="PaymentResult" component={PaymentResult} options={{title: 'Payment', headerShown: true}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

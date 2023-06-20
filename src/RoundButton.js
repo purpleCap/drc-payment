@@ -1,22 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity,Dimensions} from "react-native";
 
-const Button = ({bgColor, btnLabel, textColor, onPress}) => {
+const RoundButton = ({bgColor, btnLabel, textColor, onPress}) => {
+    const [pressed, setPressed] = useState(false);
   return (
-    <TouchableOpacity style={{...styles.btn,  backgroundColor: bgColor }} onPress={onPress}>
-        <Text style={{...styles.btnText, color: textColor}}>{btnLabel}</Text>
+    <TouchableOpacity style={{...styles.btn,  backgroundColor: pressed ? bgColor : '#FFFFFF' }} onPress={() => {onPress(); setPressed((p) => !p)}}>
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
     btn: {
-        borderRadius: 5,
+        borderRadius: 10,
+        borderColor: '#666',
+        borderWidth: 1,
         alignItems: 'center',
-        width: Dimensions.get('window').width*0.9,
+        width: 20,
+        height: 20,
         paddingVertical: 7,
         marginVertical:8,
-        height: 48,
         display: 'flex',
         justifyContent: 'center',
         marginHorizontal:10
@@ -28,4 +30,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Button
+export default RoundButton

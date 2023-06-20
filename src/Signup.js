@@ -1,5 +1,5 @@
-import React from 'react'
-import {View, Text, StyleSheet, Platform, Dimensions, TouchableOpacity, Alert} from "react-native"
+import React, {useState} from 'react'
+import {View, Text, StyleSheet, Platform, Dimensions, TouchableOpacity, Image, ScrollView} from "react-native"
 import Background from './Background'
 import Button from './Button';
 import Field from './Field';
@@ -7,34 +7,52 @@ import Field from './Field';
 const Signup = (props) => {
     const windWidth = Dimensions.get('window').width;
 
-    const otpHandler = () => {
-        // props.navigation.navigate("Login")
-    }
+    const [cid, setCid] = useState("");
+    const [password, setPassword] = useState("")
 
+    const loginHandler = () => {
+        if(cid === '123456' && password === '123456'){
+            props.navigation.navigate("ScanNPay");
+        }
+    }
   return (
     <Background>
-        <View style={{...styles.textContainer, width: windWidth}}>
-            <Text style={styles.text}>Signup</Text>
-        </View>
-        <View style={{...styles.loginContainer, width: windWidth}}>
-            <Text style={styles.titleLogin}>DRC Payment</Text>
-            <Text style={styles.textLogin}>Signup for an account</Text>
-            <Field placeholder="CID" keyboardType={"email-address"} />
-            <Field placeholder="DOB" keyboardType="date" />
-            <Field placeholder="Name" keyboardType={"email-address"} />
-            <Field placeholder="Mobile Number" keyboardType={"numeric"} />
-            {/* <View style={styles.forgotContainer}>
-                <Text style={styles.forgotPassText}>Forgot Password ?</Text>
-            </View> */}
-
-            <Button textColor="white" bgColor={"blue"} btnLabel="Get OTP" onPress={otpHandler} />
-            <View style={styles.signupContainer}>
-                <Text styles={{fontSize: 16, fontWeight: 'bold'}}>Already have an account ?</Text>
-                <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
-                    <Text style={styles.signupStyleText}>Login</Text>
-                </TouchableOpacity>
+        <ScrollView style={{flex: 1}}>
+            <Image style={styles.loginImage} source={require("./assets/567.png")} />
+  
+            <View style={styles.titleContainer}>
+                <Text style={styles.titleStyle}>DRC Payment</Text>
+                <Text style={{fontSize: 15, fontWeight: '500', color:"#131313"}}>Please fill the following to register</Text>
             </View>
-        </View>
+            
+            <View style={styles.fieldContainer}>
+                <View style={{position: 'relative'}}>
+                    <Field placeholder="CID" />
+                    <Image source={require("./assets/Group_50.png")} style={styles.iconImage} />
+                </View>
+                <View style={{position: 'relative'}}>
+                    <Field placeholder="DOB"/>
+                    <Image source={require("./assets/Group_49.png")} style={styles.iconImage} />
+                </View>
+                <View style={{position: 'relative'}}>
+                    <Field placeholder="Name"/>
+                    <Image source={require("./assets/Group_12.png")} style={styles.iconImage} />
+                </View>
+                <View style={{position: 'relative'}}>
+                    <Field placeholder="Mobile No"/>
+                    <Image source={require("./assets/Group_47.png")} style={styles.iconImage} />
+                </View>
+                <View style={styles.btnContainer}>
+                    <Button bgColor={'#1AA3E8'} btnLabel="Get OTP" textColor="#fff" onPress={() => props.navigation.navigate("OTP")} />
+                    <View style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{display: 'flex', flexDirection: 'row'}}>
+                            <Text style={{color: '#292929'}}>Already have an account?{" "}</Text>
+                            <Text style={{color: '#1C96E8', fontWeight: '500'}} onPress={() => props.navigation.navigate("Login")}>Login</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+        </ScrollView>
     </Background>
   )
 }
@@ -44,57 +62,47 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 54,
         fontWeight: "bold",
-        marginVertical: 20
+        marginVertical: 20,
     },
-    textContainer: {
-        alignItems: "center",
-        width: 460
+    titleStyle: {
+        color:"#1C96E8",
+        fontWeight:'600',
+        fontSize: 35,
+        textAlign:'center',
+        marginTop: '-2%'
     },
-    loginContainer: {
-        backgroundColor: 'white',
-        height: 700,
-        width: "100%",
-        borderTopLeftRadius: 100,
-        borderTopRightRadius: 100,
-        paddingTop: 100,
-        alignItems: 'center',
-        opacity: 0.9
-    },
-    textLogin: {
-        color: "grey",
-        fontSize: 19,
-        fontWeight: "bold",
-        marginBottom:20
-    },
-    titleLogin: {
-        fontSize: 30, color: "blue", fontWeight: "bold"
-    },
-    forgotContainer: {
-        alignItems: 'flex-end',
-        width: '78%',
-        paddingRight: 16,
-        marginBottom:100
-    },
-    forgotPassText: {
-        color: "blue",
-        fontWeight: 'bold',
-        fontSize: 12,
-        letterSpacing: 1.2
-    },
-    signupContainer: {
+    titleContainer: {
+        paddingHorizontal: 10,
+        paddingVertical: 5,
         display: 'flex',
-        flexDirection: 'row',
         justifyContent: 'center',
-        marginTop: 2,
         alignItems: 'center'
     },
-    signupStyleText: {
-        color: 'blue',
-        fontWeight: 'bold',
-        letterSpacing: 1.2,
-        marginLeft: 2,
-        fontSize: 16
+    loginImage: {
+        marginTop: '8%',
+        width:'95%',
+        maxHeight: '45%',
+    },
+    fieldContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: 16,
+    },
+
+    iconImage: {
+        height: 47,
+        width: 47,
+        position:'absolute',
+        right: 0,
+        top: 6,
+        borderTopRightRadius:4,
+        borderBottomRightRadius:4,
+    },
+    btnContainer: {
+        marginTop: 16,
+        paddingBottom :16
     }
+    
 })
 
 export default Signup
