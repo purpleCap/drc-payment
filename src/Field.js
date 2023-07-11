@@ -1,14 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {View, Text, StyleSheet, TextInput, Dimensions} from "react-native"
 import Background from './Background'
 
 const Field = (props) => {
+    const [isFocus, setIsFocus] = useState(false);
   return (
         <TextInput {...props}
-            style={styles.input}
+            style={[styles.input, isFocus && { borderColor: '#1C96E8' }]}
             placeholder={props.placeholder}
             placeholderTextColor="#BFBFBF"
-            onFocus={props.onFocus}
+            // onFocus={props.onFocus}
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
         />
   )
 }

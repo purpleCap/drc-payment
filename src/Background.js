@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, StyleSheet, ImageBackground, Image, Dimensions, ScrollView} from 'react-native'
+import {View, StyleSheet, ImageBackground, Image, Dimensions, ScrollView,KeyboardAvoidingView} from 'react-native'
 
 const image = {uri: 'https://reactjs.org/logo-og.png'}
 

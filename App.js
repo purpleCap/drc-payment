@@ -10,6 +10,7 @@ import PaymentDetail from './src/PaymentDetail';
 import BankSelection from './src/BankSelection';
 import PaymentResult from './src/PaymentResult';
 import OTP from './src/OTP';
+import Scanner from './src/ScannerScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,7 @@ function App() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="OTP" component={OTP} />
+        <Stack.Screen name="Scanner" component={Scanner} />
         <Stack.Screen name="ScanNPay" component={ScanNPay} options={{title: 'Scan & Pay', headerShown: true}} />
         <Stack.Screen name="PaymentAdvice" component={PaymentAdvice} options={{title: 'Your Payment Advices', headerShown: true}} />
         <Stack.Screen name="PaymentDetail" component={PaymentDetail} options={{title: 'Your Payment Detail', headerShown: true}} />

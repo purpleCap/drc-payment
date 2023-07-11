@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {View, Text, StyleSheet, Platform, Dimensions, TouchableOpacity, Image} from "react-native"
-// import Icon from 'react-native-vector-icons/FontAwesome';
+import { useRoute } from '@react-navigation/native';
 import PremiumTable, { Item } from "react-native-premium-table";
 import Background from './Background'
 import Button from './Button';
@@ -11,8 +11,8 @@ const PaymentDetail = (props) => {
     const windWidth = Dimensions.get('window').width-20;
     const windHeight = Dimensions.get('window').height-100;
 
-    const [paymentAdviceNum, setPaymentAdviceNum] = useState("123");
-    const [cid, setCid] = useState("")
+    const route = useRoute()
+    let {info, total} = route.params;
 
     const scanHandler = () => {
         props.navigation.navigate("PaymentAdvice")
@@ -35,22 +35,22 @@ const PaymentDetail = (props) => {
                         <Image source={require("./assets/user_icon.png")} style={styles.imageIcon} />
                     </View>
                     <View style={{paddingLeft: 10}}>
-                        <Text style={styles.payersName}>Surojit Das</Text>
-                        <Text style={{marginTop :5}}>CID / Identily Document No: 676634XX</Text>
-                        <Text>TPN: XX78</Text>
+                        <Text style={styles.payersName}>{info.clientName}</Text>
+                        <Text style={{marginTop :5}}>CID / Identily Document No: {info.clientIdentity}</Text>
+                        <Text>TPN: {info.clientIdentity}</Text>
                     </View>
                 </View>
                 <View style={styles.payersDetail}>
                     <Text style={{color: "#878484", fontSize: 15}}>CID / Identily Document No:</Text>
-                    <Text style={styles.pan}>676634XX</Text>
+                    <Text style={styles.pan}>{info.clientIdentity}</Text>
                 </View>
                 <View style={styles.payersDetail}>
                     <Text style={{color: "#878484", fontSize: 15}}>TPN:</Text>
-                    <Text style={styles.pan}>676634XX</Text>
+                    <Text style={styles.pan}>{info.clientIdentity}</Text>
                 </View>
                 <View style={{...styles.payersDetail, borderBottomLeftRadius: 8, borderBottomRightRadius: 8}}>
                     <Text style={{color: "#878484", fontSize: 15}}>Amount:</Text>
-                    <Text style={styles.pan}>₹ 3,500</Text>
+                    <Text style={styles.pan}>BTN {total}</Text>
                 </View>
             </View>
             <Button  textColor="white" bgColor={'#1AA3E8'} btnLabel="Proceed To Pay" onPress={payHandler} />

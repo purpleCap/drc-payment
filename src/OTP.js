@@ -89,7 +89,7 @@ const OTP = (props) => {
         </View>
          
         <View style={styles.btnContainer}>
-            <Button bgColor={'#1AA3E8'} btnLabel="Verify & Proceed" textColor="#fff" />
+            <Button bgColor={'#1AA3E8'} btnLabel="Verify & Proceed" textColor="#fff" style={{}} />
         </View>
     </Background>
   )
@@ -114,10 +114,11 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop :20
     },
     loginImage: {
-        marginTop: '10%',
+        // marginTop: '10%',
         width:'90%',
         height: '45%',
     },

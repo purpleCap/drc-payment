@@ -3,12 +3,18 @@ import React from 'react';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {RNCamera} from 'react-native-camera';
 
-export default function Scanner() {
+export default function Scanner(props) {
   const onSuccess = async e => {
     try {
       // alert('done');
       console.log(e);
-      await Linking.openURL(e.data);
+      setTimeout(() => {
+        // props.navigation.navigate("ScanNPay", {info: e});
+        props.giveResponse(e)
+        props.setStatus(false);
+      }, 1200)
+
+
     } catch (err) {
       console.log(err);
     }

@@ -17,7 +17,7 @@ const Login = (props) => {
     }
   return (
     <Background>
-        {/* <ScrollView style={{flex: 1}}> */}
+        <ScrollView style={{flex: 1}}>
             <Image style={styles.loginImage} source={require("./assets/567.png")} />
             <View style={styles.titleContainer}>
                 <Text style={styles.titleStyle}>DRC Payment</Text>
@@ -43,7 +43,7 @@ const Login = (props) => {
                     </View>
                 </View>
             </View>
-        {/* </ScrollView> */}
+        </ScrollView>
     </Background>
   )
 }
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 
     },
     loginImage: {
-        marginTop: Dimensions.get('window').height*0.1,
+        // marginTop: Dimensions.get('window').height*0.1,
         width:Dimensions.get('window').width*0.8,
         height: Dimensions.get('window').width*0.8,
     },
